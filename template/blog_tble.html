@@ -1,0 +1,49 @@
+<!-- Name input -->
+{% extends 'base.html'%}
+{% block title %}Blog Table{% endblock %}
+<!-- menu start-->
+  {% include 'partial/header.html'%}
+<!-- menu end-->
+
+{% block content %}
+
+{% for msg in messages %}
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <strong>Hello </strong> {{msg}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+
+
+<table class="table table-striped  ">
+  <thead class="thead-dark ">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Blog</th>
+      <th scope="col">Detail's</th>
+      <th scope="col">Image</th>
+      <th scope="col">Edit Blog</th>
+      <th scope="col">Delete Blog</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if user.is_authenticated %}
+  {% for blog in blogs %}
+    <tr>
+      <!-- <th scope="row">{{blog.id}}</th> -->
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{blog.title}}</td>
+      <td>{{blog.description}}</td>
+      <td><img style="vertical-align: bottom;" width="120" src="/static/images/{{blog.image}}" /></td>
+      <td><a href="/editblog?blogid={{blog.id}}" class="btn btn-warning">Edit</a></td>
+      <td><a href="/deleteblog?bid={{blog.id}}" class="btn btn-danger">Delete</a></td>
+    </tr>
+  {% endfor %}
+  {% endif%}
+  </tbody>
+</table>
+
+{% endblock%}

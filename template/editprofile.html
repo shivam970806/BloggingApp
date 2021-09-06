@@ -1,0 +1,113 @@
+<!-- Name input -->
+{% extends 'base.html'%}
+{% block title %}Blog Page{% endblock %}
+<!-- menu start-->
+{% include 'partial/header.html'%}
+<!-- menu end-->
+
+{% block content %}
+
+{% for msg in messages %}
+
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <strong>Hello </strong> {{msg}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+<!-- 
+<form action="#" method="post">
+  {% csrf_token %}
+
+    <div class="form-group">
+    <label >Name : </label>
+    <input type="text" class="form-control" name="un" aria-describedby="text" value="{{user.username}}">
+  </div>
+  <div class="form-group">
+    <label >Full Name : </label>
+    <input type="text" class="form-control" name="un" aria-describedby="text" value="{{user.get_full_name}}">
+  </div>
+
+  <div class="form-group">
+    <label >Email : </label>
+    <input type="text" class="form-control"  name="ue" value="{{user.email}}">
+  </div>
+
+<div class="form-group">
+    <label >Phone No : </label>
+    <input type="text" class="form-control"  name="up" value="{{user.phone}}">
+  </div>
+
+  <input type="submit" value="save data">
+</form> -->
+
+<br>
+<form action="#" method="post">
+  {% csrf_token %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Profile</div>
+          <div class="card-body">
+
+            <form class="form-horizontal" method="post" action="#">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">First Name</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="firstname" value="{{request.user.first_name}} " id="firstname"
+                      disabled />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Last Name</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="lastname" id="lastname" value="{{request.user.last_name}}"
+                    disabled />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">User Name</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="username" id="username" value="{{user.username}}"
+                    disabled />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="email" id="email" value="{{user.email}}" disabled />
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group ">
+                <input type="button" value="Edit" class="btn btn-primary btn-sm login-button">
+                <!-- <input type="button" value="Delete" class="btn btn-primary btn-sm login-button"> -->
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<br>
+{% endblock%}

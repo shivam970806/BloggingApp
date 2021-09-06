@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blogs{% endblock %}
+{% block content %}
+
+<div  class="container-fluid">
+    <h1 class="text-light bg-primary p-2 m-2 text-center">Blogs Details....</h1>
+    {{x}}
+    {% for blog in blogs %}
+    
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7 order-md-2">
+    <h2 class="featurette-heading">{{blog.title}} </h2>
+    <h3>{{blog.heading}}</h3>
+    <p class="lead">{{blog.description}}</p>
+  </div>
+  <div class="col-md-5 order-md-1">
+    <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto"
+      src="{% static 'images/posts/pic3.jpg' %}" alt="Generic placeholder image">
+  </div>
+</div>
+<hr class="featurette-divider">
+{% endfor %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Edit Blog{% endblock %}
+
+<!--
+<div  class="container-fluid">
+    <h1 class="text-light bg-primary p-2 m-2">Edit Blog</h1>
+    {{x}}
+    {% for blog in blogs %}
+    <div class="bg-dark text-light p-2 m-2 w-50">
+            <h2>{{blog.title}}</h2>
+        <h3>{{blog.heading}}</h3>
+        <p>{{blog.description}}</p>
+    </div>
+    {% endfor %}
+</div>
+
+-->
+{% for msg in messages %}
+
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <strong>Hello </strong> {{msg}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+
+{% block content %}
+<br>
+<form action="#" method="post">
+  {% csrf_token %}
+  {% for blog in blogs %}
+  <!-- <div class="form-group">
+    <input type="hidden" value="{{blog.id}}" name="bid">
+    <label >Title</label>
+    <input type="text" class="form-control" name="bt"  value="{{blog.title}}">
+  </div>
+  <div class="form-group">
+    <label>Heading</label>
+    <input type="text" class="form-control" name="bh"  value="{{blog.heading}}" >
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+      <textarea type="text" class="form-control" name="bd"  >{{blog.description}}</textarea>
+  </div>
+
+  <input type="submit" value="save data"> -->
+  <input type="hidden" value="{{blog.id}}" name="bid">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Edit Blog</div>
+          <div class="card-body">
+
+            <form class="form-horizontal" method="post" action="#">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Title</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" value="{{blog.title}}" name="title" id="title" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Heading</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" value="{{blog.heading}}" name="heading" id="heading" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Description</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                    <textarea type="text" class="form-control" name="description"
+                      id="description" />{{blog.description}}</textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group ">
+                <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block login-button">
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</form>
+<br>
+{% endblock %}

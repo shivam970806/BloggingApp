@@ -1,0 +1,98 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="{% static 'images/blogger.png' %}" height="50" width="100" alt="CoolBrand">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--showing home,about,contact part--->
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact" tabindex="-1" aria-disabled="true">Contact Us</a>
+            </li>
+            <!--showing dashboard part--->
+            <li class="nav-item dropdown">
+                {% if user.is_authenticated %}
+                    <a class="nav-link" href="/user_dashboard" tabindex="-1" aria-disabled="true">Dashboard</a>
+                {% endif %}
+            </li>
+
+            <!--showing blogging part--->
+            <!-- <li class="nav-item dropdown">
+                {% if user.is_authenticated %}
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blogging</a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/blog">Add Blog</a>
+                    <a class="dropdown-item" href="/blogs">View Blog</a>
+                    <a class="dropdown-item" href="/blogtable">Edit Blog</a>
+
+
+                </div>
+                {% else %}
+                <a class="nav-link" href="/blogs" tabindex="-1" aria-disabled="true">Blogs</a>
+                {% endif %}
+
+            </li> -->
+
+            <!--showing profile part--->
+            <!-- <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Profile</a>
+                {% if user.is_authenticated %}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">{{ user.username }}</a>
+                    <a class="dropdown-item" href="#">{{ user.email }}</a>
+                    <a class="dropdown-item" href="#">{{ user.get_full_name }}</a>
+                    <a class="dropdown-item" href="/editprofile">Edit Profile</a>
+
+                </div>
+                {% else %}
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#" class="dropdown-item">Need to be Login</a>
+                    <a class="dropdown-item" href="/login" class="dropdown-item">login</a>
+                </div>
+
+                {% endif %}
+
+            </li> -->
+        </ul>
+
+        <!--showing searching part--->
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+            <!--logout part ----->
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Welcome,<br> {{user.get_full_name }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </form>
+    </div>
+
+</nav>

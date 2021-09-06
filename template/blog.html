@@ -1,0 +1,97 @@
+<!-- Name input -->
+{% extends 'base.html'%}
+{% block title %}Blog Page{% endblock %}
+<!-- menu start-->
+{% include 'partial/header.html'%}
+<!-- menu end-->
+
+{% block content %}
+
+{% for msg in messages %}
+
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+  <strong>Hello </strong> {{msg}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% endfor %}
+
+<!-- 
+  <div class="form-group">
+    <label >Title : </label>
+    <input type="text" class="form-control" name="t"  aria-describedby="text" placeholder="Enter title">
+  </div>
+
+  <div class="form-group">
+    <label >Heading: </label>
+    <input type="text" class="form-control"  name="h" placeholder="Heading">
+  </div>
+
+  <div class="form-group">
+    <label >Description :</label>
+    <textarea class="form-control" name="des"  placeholder="Description..."></textarea>
+  </div>
+
+  <input type="submit" value="save data"> -->
+
+<br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Add Blog</div>
+        <div class="card-body">
+
+          <form class="form-horizontal" method="post" action="#">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="name" class="cols-sm-2 control-label">Title</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control"  name="title" id="title" placeholder="Title" required />
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="cols-sm-2 control-label">Heading</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user " aria-hidden="true"></i></span>
+                  <input type="text" class="form-control"  name="heading" id="heading" placeholder="Heading" required/>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="cols-sm-2 control-label">Image</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <input type="file" class="form-control"  name="image" id="image" required/>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="cols-sm-2 control-label">Description</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user " aria-hidden="true"></i></span>
+                  <textarea type="text" class="form-control" name="description"
+                    id="description" placeholder="Description" required/></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-group ">
+              <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block login-button">
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+{% endblock%}

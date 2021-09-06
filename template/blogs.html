@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blogs{% endblock %}
+{% block content %}
+
+<div  class="container-fluid">
+    <h1 class="text-light bg-primary p-2 m-2">My BLogs....</h1>
+    {% for blog in blogs %}
+
+    <div class="bg-dark text-light p-2 m-2 w-50">
+            <h2>{{blog.title}}</h2>
+        <h3>{{blog.heading}}</h3>
+        <p><a href="/blogsdetails?blogid={{blog.id}}" class="btn btn-primary">Read more....</a></p>
+    </div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}
